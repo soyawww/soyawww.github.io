@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">soya的小屋</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['你好，世界', '面朝大海，春暖花开', 'HELLO,WORD'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-培训的day1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/"
+    >培训的那些日子day1</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/" class="article-date">
+  <time datetime="2020-10-24T18:13:05.000Z" itemprop="datePublished">2020-10-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>今天开始学校的pte培训了。</p>
+<p>毕竟是经过小小选拔才进去的，还是好好的记录一下每日打的东西吧。</p>
+<h1 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603542194996.png" alt="1603542194996"></p>
+<p>用bp爆破一下密码，得到root，root。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603543074933.png" alt="1603543074933"></p>
+<p>进去了看一下配置，是mysql5.5.62、apache2.4.10和phpmyadmin4.4.14.6。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603545616404.png" alt="1603545616404"></p>
+<p>因为基础比较薄弱，所以上网搜索了一下phpmyadmin的该版本的漏洞。</p>
+<p>然后查找到了一个叫做<strong>CVE-2016-5734</strong>的远程代码执行漏洞。</p> 
+      <a class="article-more-link" href="/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-bugku之密码题(上)"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/"
+    >bugku之密码题(上)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/" class="article-date">
+  <time datetime="2020-10-18T09:00:00.000Z" itemprop="datePublished">2020-10-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ctf%E8%A7%A3%E9%A2%98/">ctf解题</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>好一段日子没做题了（之前还说两天一篇嘞……），再捡起来做一下题目。</p>
+<p>并不是特别难，正好帮助回忆一下python的用法。</p>
+<h2 id="滴答-滴"><a href="#滴答-滴" class="headerlink" title="滴答~滴"></a>滴答~滴</h2><p>-… -.- -.-. - ..-. – .. … -.-. </p>
+<p>一看点点杠杠就知道是摩斯密码。</p>
+<p>拿去解码，得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1587480298416.png" alt="1587480298416"></p>
+<h2 id="聪明的小羊"><a href="#聪明的小羊" class="headerlink" title="聪明的小羊"></a>聪明的小羊</h2><p>题目：</p>
+<p>一只小羊翻过了2个栅栏</p>
+<p>KYsd3js2E{a2jda}</p>
+<p>一看是栅栏，就想到了栅栏密码。</p>
+<p>栅栏密码拥有一个密钥k，明文会被分成k个一组，然后依次取出每组第一个进行连接，然后去第二个，第三个……</p>
+<p>根据flag的格式（上一题的key{xxxxx}），可以看出k的值为2。题目中也提示翻过了两个栅栏。</p>
+<p>分成两组：KYsd3js2     E{a2jda}</p>
+<p>拼接一下：KEY{sad23jjdsa2}</p> 
+      <a class="article-more-link" href="/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bugku/" rel="tag">bugku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E9%A2%98/" rel="tag">密码题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-html与css"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/22/html%E4%B8%8Ecss/"
+    >html与css基础</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/22/html%E4%B8%8Ecss/" class="article-date">
+  <time datetime="2020-03-22T10:28:00.000Z" itemprop="datePublished">2020-03-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近在学成哥的web前端。</p>
+<p>今天就把最近学的东西稍微整理一下。<br><br></p>
+<p><strong>主流浏览器</strong>：拥有<strong>shell</strong>（外壳【展示页面】）和<strong>内核</strong>。(市面上的很多浏览器只有shell)</p>
+<p>例如：IE（trident），Firefox（Gecko），google chrome（Webkit/blink），safari（webkit），opera（presto）</p>
+<br>
+
+<p><strong>web前端=html（结构）+css（样式）+JavaScript（行为）</strong></p>
+<p>在开发时，通常各尽其职。即便有另一个职务的功能，也不做编写使用。</p>
+<br> 
+      <a class="article-more-link" href="/2020/03/22/html%E4%B8%8Ecss/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-一些历史"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/19/%E4%B8%80%E4%BA%9B%E5%8E%86%E5%8F%B2/"
+    >一些历史</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/19/%E4%B8%80%E4%BA%9B%E5%8E%86%E5%8F%B2/" class="article-date">
+  <time datetime="2020-03-19T08:09:15.000Z" itemprop="datePublished">2020-03-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>觉得历史还是挺有意思的，虽说不是什么技术，但也有帮助去理解一些东西吧。</p>
+<h1 id="web发展史"><a href="#web发展史" class="headerlink" title="web发展史"></a>web发展史</h1><p>世界上出现最早的浏览器叫<strong>www</strong>（worldwideweb）。</p>
+<p>但<strong>mosaic</strong>是第一个互联网上<strong>普遍使用</strong>并且能够<strong>显示图片</strong>的网页浏览器。</p>
+<p>1993年4月，马克·安德森和其团队研究出了mosaic。后因和伊利诺伊大学的版权纠纷，而做出了比前者更强的浏览器Netscape navigator（网景浏览器，又称为导航者）。</p>
+<p>2003年，网景解散并开放源码。Mozilla公司基于源码开发了<strong>Mozilla Firebird</strong>。</p> 
+      <a class="article-more-link" href="/2020/03/19/%E4%B8%80%E4%BA%9B%E5%8E%86%E5%8F%B2/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%86%E5%8F%B2/" rel="tag">历史</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-PHP环境搭建"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/14/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+    >PHP环境搭建(apache+php+mysql)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/14/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time datetime="2020-03-14T10:20:00.000Z" itemprop="datePublished">2020-03-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>因为这学期要学习web后端了，所以搭建一下php环境。</p>
+<p>环境：虚拟机windowserver2016</p>
+<p><strong>apache2.4+php7+mysql8.0</strong></p>
+<h1 id="apache"><a href="#apache" class="headerlink" title="apache"></a>apache</h1><p>去 <a target="_blank" rel="noopener" href="https://www.apachelounge.com/download/">https://www.apachelounge.com/download/</a>  上根据自己的系统来下载apache文件。</p>
+<p>（我这里是64位，所以下载了apache 2.4.41 win64）</p> 
+      <a class="article-more-link" href="/2020/03/14/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-建立隐藏账户（图形化界面）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/06/%E5%BB%BA%E7%AB%8B%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7%EF%BC%88%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%EF%BC%89/"
+    >建立隐藏管理员账户（图形化界面）</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/06/%E5%BB%BA%E7%AB%8B%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7%EF%BC%88%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-06T08:15:06.000Z" itemprop="datePublished">2020-03-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">信安之路</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>正好作业布置了这个，就顺带来写一篇吧。</p>
+<p>实验环境：<strong>winserver2016</strong></p>
+<p>先新建一个账户abc。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1583482741786.png" alt="1583482741786"></p> 
+      <a class="article-more-link" href="/2020/03/06/%E5%BB%BA%E7%AB%8B%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7%EF%BC%88%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%EF%BC%89/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E5%8A%A0%E5%9B%BA/" rel="tag">安全配置加固</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-bugku之web题(二)"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/bugku%E4%B9%8Bweb%E9%A2%98(%E4%BA%8C)/"
+    >bugku之web题(二)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/04/bugku%E4%B9%8Bweb%E9%A2%98(%E4%BA%8C)/" class="article-date">
+  <time datetime="2020-03-04T11:22:00.000Z" itemprop="datePublished">2020-03-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ctf%E8%A7%A3%E9%A2%98/">ctf解题</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>真的好久好久没写过文章了。</p>
+<p>离疫情结束还有好久，趁此复健下，每两天写一篇wwww</p>
+<h1 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a>本地包含</h1><p>这道题现在平台还没有修复，这里就不写啦。</p>
+<h1 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583246970856.png"></p>
+<p>代码审计。</p>
+<p>**error_reporting()**规定报告哪个错误级别。0则为关闭错误报告。</p>
+<p>**isset()**函数用于检测变量是否被设置并且不为NULL。</p>
+<p>**preg_match()**用于执行一个正则表达式匹配。</p>
+<p>（tips：正则表达式是一种文本模式，对普通字符和元字符操作的一种逻辑公式。</p>
+<p>其中<code>^</code>为输入字符串的开始位置。<code>\w</code>匹配字母，数字，下划线。<code>$</code>匹配输入字符串的结束位置）</p> 
+      <a class="article-more-link" href="/2020/03/04/bugku%E4%B9%8Bweb%E9%A2%98(%E4%BA%8C)/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bugku/" rel="tag">bugku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web%E9%A2%98/" rel="tag">web题</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-DVWA（一）简介"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/16/DVWA%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/"
+    >dvwa（一）简介</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/12/16/DVWA%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time datetime="2019-12-16T07:38:40.000Z" itemprop="datePublished">2019-12-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">信安之路</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>DVWA（一）简介+搭建</p>
+<p><strong>DVWA（Damn Vulnerable Web Application）是一个用来进行安全脆弱性鉴定的PHP/MySQL Web应用，旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。</strong></p> 
+      <a class="article-more-link" href="/2019/12/16/DVWA%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-JIS-CTF靶机渗透"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/15/JIS-CTF%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/"
+    >JIS-CTF靶机渗透</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/12/15/JIS-CTF%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" class="article-date">
+  <time datetime="2019-12-15T09:02:57.000Z" itemprop="datePublished">2019-12-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%B6%E6%9C%BA/">靶机</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="实验环境："><a href="#实验环境：" class="headerlink" title="实验环境："></a>实验环境：</h1><p>攻击机：kali</p>
+<p>靶机：JIS-CTF </p>
+<p>网络：nat模式，192.168.110.0/24网段</p>
+<h1 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h1><h2 id="1）拿flag"><a href="#1）拿flag" class="headerlink" title="1）拿flag"></a>1）拿flag</h2><p>首先要找到靶机。</p>
+<p>先使用nmap扫描。</p> 
+      <a class="article-more-link" href="/2019/12/15/JIS-CTF%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-ms17-010实验(改)"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/01/ms17-010%E5%AE%9E%E9%AA%8C(%E6%94%B9)/"
+    >ms17-010实验</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/12/01/ms17-010%E5%AE%9E%E9%AA%8C(%E6%94%B9)/" class="article-date">
+  <time datetime="2019-12-01T07:41:00.000Z" itemprop="datePublished">2019-12-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">信安之路</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>ps：修改了一些错误，添加了一些内容</p>
+<h1 id="1-实验目的"><a href="#1-实验目的" class="headerlink" title="1.     实验目的"></a>1.     实验目的</h1><p>利用ms17-010漏洞获得靶机（一个存在漏洞的系统）权限。</p>
+<h1 id="2-实验原理"><a href="#2-实验原理" class="headerlink" title="2.     实验原理"></a>2.     实验原理</h1><p>利用了微软 Microsoft Windows SMB 服务器通信协议。</p>
+<p>SMB主要用来使得一个网络上的机器共享计算机文件、打印机、串行端口和通讯等资源。它也提供认证的行程间通讯机能。使用<strong>445</strong>端口。</p>
+<p>攻击者利用445端口发送特殊设计的消息，来远程执行攻击代码。</p> 
+      <a class="article-more-link" href="/2019/12/01/ms17-010%E5%AE%9E%E9%AA%8C(%E6%94%B9)/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

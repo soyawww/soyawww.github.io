@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    培训的那些日子day1 |  soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-培训的day1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  培训的那些日子day1
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/" class="article-date">
+  <time datetime="2020-10-24T18:13:05.000Z" itemprop="datePublished">2020-10-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">648</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">2 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>今天开始学校的pte培训了。</p>
+<p>毕竟是经过小小选拔才进去的，还是好好的记录一下每日打的东西吧。</p>
+<h1 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603542194996.png" alt="1603542194996"></p>
+<p>用bp爆破一下密码，得到root，root。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603543074933.png" alt="1603543074933"></p>
+<p>进去了看一下配置，是mysql5.5.62、apache2.4.10和phpmyadmin4.4.14.6。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603545616404.png" alt="1603545616404"></p>
+<p>因为基础比较薄弱，所以上网搜索了一下phpmyadmin的该版本的漏洞。</p>
+<p>然后查找到了一个叫做<strong>CVE-2016-5734</strong>的远程代码执行漏洞。</p>
+<span id="more"></span>
+
+<p>这里我选择使用<strong>kali</strong>来对漏洞进行利用。</p>
+<p>使用searchsploit查找漏洞EXP。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603547634887.png" alt="1603547634887"></p>
+<p>试着利用一下，发现可以返回内容（-u：账号；-p:密码；-c：命令）。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603547960062.png" alt="1603547960062"></p>
+<p>试着输入base64格式的一句话木马。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603550517440.png" alt="1603550517440"></p>
+<p>写入成功，但连接的时候出了点问题。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603550557351.png" alt="1603550557351"></p>
+<p>很奇怪，试了很多种方法，发现可以上传，就是无法连接。</p>
+<p>多次试验后发现，换一种编码器格式就可以连接了……</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603550982432.png" alt="1603550982432"></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603551008836.png" alt="1603551008836"></p>
+<p>成功！</p>
+<h1 id="apache-tomcat-8-5-19"><a href="#apache-tomcat-8-5-19" class="headerlink" title="apache tomcat 8.5.19"></a>apache tomcat 8.5.19</h1><p>apache tomcat的版本为<strong>8.5.19</strong></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603555478303.png" alt="1603555478303"></p>
+<p>到searchsploit中查找apache tomcat的相关漏洞，发现了符合该版本的<strong>JSP上传绕过/远程代码执行漏洞</strong>。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603555531381.png" alt="1603555531381"></p>
+<p>网上一查是<strong>CVE2017-12615</strong></p>
+<blockquote>
+<p><strong>漏洞原理</strong></p>
+<p>在windows服务器下,将readonly参数设置为false时,即可通过PUT方式创建一个jsp文件,并可以执行任意代码。Tomcat版本内web.xml配置内无readonly,需要手工添加，默认配置不受此影响。</p>
+</blockquote>
+<p>测试靶机是否有该漏洞，显示有该漏洞，并且上传了一个jsp的测试文件。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603555945422.png" alt="1603555945422"></p>
+<p>可以访问。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603556059514.png" alt="1603556059514"></p>
+<p>上传webshell。</p>
+<p>（命令：   </p>
+<p> -u，–url=u 网站url </p>
+<p> -p，–pwn=p 生成webshell并上传它 </p>
+<p> -l，–list=l主机文件 ）</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603556510257.png" alt="1603556510257"></p>
+<p>后面两个环境由于关掉了，只能自己搭了hia</p>
+<h1 id="DoraBox"><a href="#DoraBox" class="headerlink" title="DoraBox"></a>DoraBox</h1><p>搭建不是特别难，查看修改conn.php的信息，导入sql文件就可。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603560915834.png" alt="1603560915834"></p>
+<p>要做的是第一个数字型注入。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561456350.png" alt="1603561456350"></p>
+<p>先猜测字段数，使用orderby一个个实验，最后发现4时报错，所以字段数为3.</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561553407.png" alt="1603561553407"></p>
+<p>判断字段输出的位置。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561663349.png" alt="1603561663349"></p>
+<p>爆破数据库名。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561752887.png" alt="1603561752887"></p>
+<p>爆破表名。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561862968.png" alt="1603561862968"></p>
+<p>爆破news表中所有字段名。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603561952724.png" alt="1603561952724"></p>
+<p>爆破account表中所有字段名。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603562013085.png" alt="1603562013085"></p>
+<p>获得了三个字段的内容。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603562361417.png" alt="1603562361417"></p>
+<h1 id="pikachu"><a href="#pikachu" class="headerlink" title="pikachu"></a>pikachu</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603562429030.png" alt="1603562429030"></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603562447486.png" alt="1603562447486"></p>
+<p>这一个做的是验证码绕过，非常简单，bp抓包爆破密码即可。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>今天是培训的第一天，题目并不难，但对于我来说依旧是有些困难。</p>
+<p>很久没练手生是一方面，基础不好也是一方面。</p>
+<p>今后仍需继续努力，加油！</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e44cb1b5b5b">https://www.jianshu.com/p/8e44cb1b5b5b</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/WY92139010/article/details/101977578">https://blog.csdn.net/WY92139010/article/details/101977578</a></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.soyawww.com/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/10/26/%E5%9F%B9%E8%AE%AD%E7%9A%84day2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            培训的那些日子day2
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">bugku之密码题(上)</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "4C1UYtlJuMPjaLshBufGIn2e-gzGzoHsz",
+    app_key: "NbpumEIJ4G7cOOl9aQOS4YsR",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

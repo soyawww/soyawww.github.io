@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    bugku之web题(二) |  soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-bugku之web题(二)"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  bugku之web题(二)
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/04/bugku%E4%B9%8Bweb%E9%A2%98(%E4%BA%8C)/" class="article-date">
+  <time datetime="2020-03-04T11:22:00.000Z" itemprop="datePublished">2020-03-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ctf%E8%A7%A3%E9%A2%98/">ctf解题</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">823</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">3 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>真的好久好久没写过文章了。</p>
+<p>离疫情结束还有好久，趁此复健下，每两天写一篇wwww</p>
+<h1 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a>本地包含</h1><p>这道题现在平台还没有修复，这里就不写啦。</p>
+<h1 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583246970856.png"></p>
+<p>代码审计。</p>
+<p>**error_reporting()**规定报告哪个错误级别。0则为关闭错误报告。</p>
+<p>**isset()**函数用于检测变量是否被设置并且不为NULL。</p>
+<p>**preg_match()**用于执行一个正则表达式匹配。</p>
+<p>（tips：正则表达式是一种文本模式，对普通字符和元字符操作的一种逻辑公式。</p>
+<p>其中<code>^</code>为输入字符串的开始位置。<code>\w</code>匹配字母，数字，下划线。<code>$</code>匹配输入字符串的结束位置）</p>
+<span id="more"></span>
+<p><strong>die()</strong> 是exit()的别名，输出一条消息并退出当前脚本。</p>
+<p><strong>var_dump()</strong> 函数用于输出变量的相关信息。</p>
+<p><strong>eval()</strong> 函数用来执行一个字符串表达式，并返回表达式的值。</p>
+<p>**$$**表示可变变量。</p>
+<p>第一个if判断是否存在args变量，若是则判断是否只包含字母数字和下划线（如果不是就die了），最后输出var_dump($$args)。</p>
+<p>第一句提示flag在变量里，所以赋值args为GLOBALS(超全局变量)来查看所有变量，看看是否能得出flag。</p>
+<p>得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583261163835.png"></p>
+<h1 id="WEB5"><a href="#WEB5" class="headerlink" title="WEB5"></a>WEB5</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583246184085.png" alt="1583246184085"></p>
+<p>先查看源代码。<img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1578332266633.png" alt="1578332266633"></p>
+<p>查询后得知是jsp加密（其实题目也有提示）。</p>
+<p>放到火狐的控制台运行，得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1578332507149.png" alt="1578332507149"></p>
+<h1 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a>头等舱</h1><p>页面就一句话“什么也没有。”</p>
+<p>查看了源码和页面元素，真·什么也没有……</p>
+<p>尝试抓包，结果bp一抓包啥都有。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583246505662.png" alt="1583246505662"></p>
+<h1 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a>网站被黑</h1><p>页面很炫酷，提示是实战经常用到。</p>
+<p>使用御剑扫描，因为主页是php文件，所以猜想后门也是php文件。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583261496673.png" alt="1583261496673"></p>
+<p>扫描到shell.php进入。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583261561916.png" alt="1583261561916"></p>
+<p>使用bp爆破，密码是hack。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583261834574.png" alt="1583261834574"></p>
+<p>获得flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583261859765.png" alt="1583261859765"></p>
+<h1 id="管理员系统"><a href="#管理员系统" class="headerlink" title="管理员系统"></a>管理员系统</h1><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583316706901.png" alt="1583316706901"></p>
+<p>是一个登录界面，随便输入submit显示ip禁止访问。</p>
+<p>查了以后发现bp可以使用X-Forwarded-For Header伪造ip。</p>
+<p>查看源码，发现了一串base64编码，解码得出：test123。猜测这可能是密码，一会儿爆破用。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583317270355.png" alt="1583317270355"></p>
+<p>使用bp，加上X-Forwarded-For Header:127.0.0.1并使用刚才解密的密码进行爆破。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583318437449.png" alt="1583318437449"></p>
+<p>得到用户名admin。</p>
+<p>然后转到repeater界面，go一下，获得flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583318588653.png" alt="1583318588653"></p>
+<h1 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h1><p>提示是查看源代码。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583319167075.png" alt="1583319167075"></p>
+<p>看到一大串%%%，使用url解码。</p>
+<p>因为<code>eval(unescape(p1) + unescape(&#39;%35%34%61%61%32&#39; + p2)</code>所以得到：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function checkSubmit()&#123;<span class="selector-tag">var</span> <span class="selector-tag">a</span>=document<span class="selector-class">.getElementById</span>(&quot;password&quot;);if(&quot;undefined&quot;!=typeof <span class="selector-tag">a</span>)&#123;if(&quot;<span class="number">67</span>d709b2b54aa2aa648cf6e87a7114f1&quot;==<span class="selector-tag">a</span><span class="selector-class">.value</span>)return!<span class="number">0</span>;alert(&quot;Error&quot;);<span class="selector-tag">a</span><span class="selector-class">.focus</span>();return!<span class="number">1</span>&#125;&#125;document<span class="selector-class">.getElementById</span>(&quot;levelQuest&quot;)<span class="selector-class">.onsubmit</span>=checkSubmit;</span><br></pre></td></tr></table></figure>
+
+<p>提交67d709b2b54aa2aa648cf6e87a7114f1</p>
+<p>页面显示出flag。</p>
+<h1 id="flag在index中"><a href="#flag在index中" class="headerlink" title="flag在index中"></a>flag在index中</h1><p>flag在index中。</p>
+<p>页面上有一个连接，点进去后进入另一个页面。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583319968184.png" alt="1583319968184"></p>
+<p>从url上可以看出来使用了file=show.php</p>
+<p>这块我不太懂，查了一下得知是php伪协议，file://用于访问本地文件系统，可以利用文件包含的漏洞来读取php文件的源码。</p>
+<p>先base64编码，再传入include函数，就不会被认为是php文件，会输出文件的base64编码，结果解码即可。【<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41289254/article/details/81388343">参考资料</a>】</p>
+<p>file=php://filter/read=convert.base64-encode/resource=index.php</p>
+<p>结果输出很长一串base64编码，进行解码。</p>
+<p>得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1583320870268.png" alt="1583320870268"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.soyawww.com/2020/03/04/bugku%E4%B9%8Bweb%E9%A2%98(%E4%BA%8C)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bugku/" rel="tag">bugku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web%E9%A2%98/" rel="tag">web题</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/03/06/%E5%BB%BA%E7%AB%8B%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7%EF%BC%88%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            建立隐藏管理员账户（图形化界面）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/12/16/DVWA%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">dvwa（一）简介</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "4C1UYtlJuMPjaLshBufGIn2e-gzGzoHsz",
+    app_key: "NbpumEIJ4G7cOOl9aQOS4YsR",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

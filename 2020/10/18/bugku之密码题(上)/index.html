@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    bugku之密码题(上) |  soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-bugku之密码题(上)"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  bugku之密码题(上)
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/" class="article-date">
+  <time datetime="2020-10-18T09:00:00.000Z" itemprop="datePublished">2020-10-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ctf%E8%A7%A3%E9%A2%98/">ctf解题</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">10 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>好一段日子没做题了（之前还说两天一篇嘞……），再捡起来做一下题目。</p>
+<p>并不是特别难，正好帮助回忆一下python的用法。</p>
+<h2 id="滴答-滴"><a href="#滴答-滴" class="headerlink" title="滴答~滴"></a>滴答~滴</h2><p>-… -.- -.-. - ..-. – .. … -.-. </p>
+<p>一看点点杠杠就知道是摩斯密码。</p>
+<p>拿去解码，得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1587480298416.png" alt="1587480298416"></p>
+<h2 id="聪明的小羊"><a href="#聪明的小羊" class="headerlink" title="聪明的小羊"></a>聪明的小羊</h2><p>题目：</p>
+<p>一只小羊翻过了2个栅栏</p>
+<p>KYsd3js2E{a2jda}</p>
+<p>一看是栅栏，就想到了栅栏密码。</p>
+<p>栅栏密码拥有一个密钥k，明文会被分成k个一组，然后依次取出每组第一个进行连接，然后去第二个，第三个……</p>
+<p>根据flag的格式（上一题的key{xxxxx}），可以看出k的值为2。题目中也提示翻过了两个栅栏。</p>
+<p>分成两组：KYsd3js2     E{a2jda}</p>
+<p>拼接一下：KEY{sad23jjdsa2}</p>
+<span id="more"></span>
+
+<h2 id="ok"><a href="#ok" class="headerlink" title="ok"></a>ok</h2><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1587481204162.png" alt="1587481204162"></p>
+<p>一打开扑面而来的一大堆ok，啥啊这是？</p>
+<p>一查发现是ook编码（是我孤陋寡闻了……）</p>
+<p>拿去解码一下，flag就出来了。</p>
+<p>解码网址：<a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
+<h2 id="这不是摩斯密码"><a href="#这不是摩斯密码" class="headerlink" title="这不是摩斯密码"></a>这不是摩斯密码</h2><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1587481323849.png" alt="1587481323849"></p>
+<p>之前查ook的时候，顺带也学到了这个，是一种叫brainfuck的极小化计算机语言。</p>
+<p>同样去解码一下，得到flag。</p>
+<h2 id="easy-crypto"><a href="#easy-crypto" class="headerlink" title="easy_crypto"></a>easy_crypto</h2><blockquote>
+<p>0010 0100 01 110 1111011 11 11111 010 000 0<br>001101 1010 111 100 0 001101 01111 000 001101 00 10 1 0 010 0 000 1<br>01111 10 11110 101011 1111101</p>
+</blockquote>
+<p>题目是一串长短不一的01，猜测是变形版的摩斯密码（0长1短）。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1601802730930.png" alt="1601802730930"></p>
+<p>解码出来的结果为<code>FLAG%u7bM0RSE_CODE_1S_INTEREST1N9!%u7d</code></p>
+<p><code>%u7b</code>和<code>%u7d</code>是url编码的{}花括号，</p>
+<p>修改后提交后显示失败，一查发现需要改成小写。</p>
+<p>改成小写后提交成功。</p>
+<h2 id="简单加密"><a href="#简单加密" class="headerlink" title="简单加密"></a>简单加密</h2><blockquote>
+<p>e6Z9i<del>]8R</del>U<del>QHE{RnY{QXg</del>QnQ{^XVlRXlp^XI5Q6Q6SKY8jUAA</p>
+</blockquote>
+<p>乍一看觉得有点像是移动了字符位置，可能会是栅栏密码。按照题目密码的格式应该是flag{xxx}，所以不是栅栏密码。</p>
+<p>一查发现点在结尾的AA上，base64编码的结尾为“==”。但很明显这不是base64编码，只能考虑到有符号数字字母的ascii编码。</p>
+<p>在ASCII表内，A和=相差4个位置，这里很容易想到变换加密，凯撒密码。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1601804497996.png" alt="1601804497996"></p>
+<p>整理一下，要做的就是把ASCII码转换为10进制数字后，数字位移4位，再base64解码。</p>
+<p>写个代码会方便一点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">strs=<span class="string">&#x27;e6Z9i~]8R~U~QHE&#123;RnY&#123;QXg~QnQ&#123;^XVlRXlp^XI5Q6Q6SKY8jUAA&#x27;</span> <span class="comment">#要转换的字符串</span></span><br><span class="line">lista=[]</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">str</span> <span class="keyword">in</span> strs: <span class="comment">#ascii转10进制</span></span><br><span class="line">    <span class="built_in">str</span> = <span class="built_in">chr</span>(<span class="built_in">ord</span>(<span class="built_in">str</span>)-<span class="number">4</span>) <span class="comment">#10进制位移4位后转为ascii码</span></span><br><span class="line">    lista.append(<span class="built_in">str</span>)</span><br><span class="line">str_base64 = <span class="string">&quot;&quot;</span>.join(lista) <span class="comment">#列表转为字符串</span></span><br><span class="line">word = base64.b64decode(str_base64)<span class="comment">#base64解码</span></span><br><span class="line"><span class="built_in">print</span>(word)</span><br></pre></td></tr></table></figure>
+
+<p>解码后得到flag【key{68743000650173230e4a58ee153c68e8}】。</p>
+<h2 id="散乱的密文"><a href="#散乱的密文" class="headerlink" title="散乱的密文"></a>散乱的密文</h2><blockquote>
+<p>lf5{ag024c483549d7fd@@1}<br>一张纸条上凌乱的写着2 1 6 5 3 4</p>
+</blockquote>
+<p>一眼看过去感觉前几位很像是打乱了顺序的flag，长度是24，按照字条的提示分组并且摆位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lf5&#123;ag</span><br><span class="line">216534</span><br><span class="line">flag&#123;5</span><br><span class="line">215643 #实际顺序</span><br></pre></td></tr></table></figure>
+
+<p>正好是flag。</p>
+<p>按照这个思路，分为4组，按照正确顺序调换位置，再拼合。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&#x27;lf5&#123;ag024c483549d7fd@@1&#125;&#x27;</span></span><br><span class="line">lenth = <span class="built_in">len</span>(str1)</span><br><span class="line">list1=[<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">3</span>] <span class="comment">#顺序,注意是实际顺序</span></span><br><span class="line">list2=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,lenth,<span class="number">6</span>): <span class="comment">#分割密文</span></span><br><span class="line">	str2 = str1[i:i+<span class="number">6</span>]</span><br><span class="line">	<span class="built_in">print</span>(str2)</span><br><span class="line">	<span class="keyword">for</span> a <span class="keyword">in</span> list1: <span class="comment">#重组</span></span><br><span class="line">		list2.append(str2[a-<span class="number">1</span>])</span><br><span class="line">str2 = <span class="string">&quot;&quot;</span>.join(list2)</span><br><span class="line"><span class="built_in">print</span>(str2)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1601842974624.png" alt="1601842974624"></p>
+<p>解出flag</p>
+<h2 id="凯撒部长的奖励"><a href="#凯撒部长的奖励" class="headerlink" title="凯撒部长的奖励"></a>凯撒部长的奖励</h2><blockquote>
+<p>就在8月，超师傅出色地完成了上级的特遣任务，凯撒部长准备给超师傅一份特殊的奖励，兴高采烈的超师傅却只收到一长串莫名的密文，超师傅看到英语字串便满脸黑线，帮他拿到这份价值不菲的奖励吧。<br>密文：MSW{byly_Cm_sIol_lYqUlx_yhdIs_Cn_Wuymul_il_wuff_bcg_pCwnIl_cm_u_Yrwyffyhn_guh_cz_sio_quhn_ni_ayn_bcm_chzilguncihm_sio_wuh_dich_om}<br>题目来源：第七季极客大挑战</p>
+</blockquote>
+<p>题目名很明显就是凯撒密码。</p>
+<p>解密（<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/kaisamima.php%EF%BC%89">https://www.qqxiuzi.cn/bianma/kaisamima.php）</a></p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1601845931393.png" alt="1601845931393"></p>
+<p>没有太多的提示，位移次数是试出来的。</p>
+<p>得到flag。</p>
+<h2 id="一段Base64"><a href="#一段Base64" class="headerlink" title="一段Base64"></a>一段Base64</h2><p>这一题给了个文件，里面全是base64编码（如下，非全部）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XDEzNFwxNzBcNjVcMTQzXDEzNFwxNzBcNjdcNjVcMTM0XDE3MFw2M1w2MFwxMzRcMTcwXDYzXDYwXDEzNFwxNzBcNjNcNjVcMTM0XDE3MFw2M1w2M1wxMzRcMTcwXDY1XDE0M1wxMzRcMTcwXDY3XDY1XDEzNFwxNzBcNjNcNjBcMTM0XDE3MFw2M1w2MFwxMzRcMTcwXDYzXDY3XDEzNFwxNzBcNjNcNjRcMTM0XDE3MFw2NVwxNDNcMTM0XDE3MFw2N1w2NVwxMzRcMTcwXDYzXD</span><br></pre></td></tr></table></figure>
+
+<p>丢去解码，这里为了练习python就写了段程序（可以直接线上解码）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">f1= <span class="built_in">open</span>(<span class="string">&#x27;./2.txt&#x27;</span>,<span class="string">&quot;r&quot;</span>) <span class="comment">#题目文件</span></span><br><span class="line">f2 = <span class="built_in">open</span>(<span class="string">&#x27;./1.txt&#x27;</span>,<span class="string">&quot;r+&quot;</span>) <span class="comment">#解码文件</span></span><br><span class="line">str1=f1.read()</span><br><span class="line">str2 = <span class="built_in">str</span>(base64.b64decode(str1)) <span class="comment">#base64解码</span></span><br><span class="line">f2.write(str2) </span><br><span class="line">f1.close()</span><br><span class="line">f2.close()</span><br></pre></td></tr></table></figure>
+
+<p>得到了一长串数字，仔细一看似乎是八进制。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602204593877.png" alt="1602204593877"></p>
+<p>解码后又得到了16进制。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602205976065.png" alt="1602205976065"></p>
+<p>再次转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">f1= <span class="built_in">open</span>(<span class="string">&#x27;./1.txt&#x27;</span>,<span class="string">&quot;r+&quot;</span>) <span class="comment">#密文文件</span></span><br><span class="line">ciphertext = f1.read()</span><br><span class="line"><span class="comment">#转8进制</span></span><br><span class="line">plaintext1 = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ciphertext.split(<span class="string">&#x27;\\&#x27;</span>): <span class="comment">#切割</span></span><br><span class="line">	<span class="keyword">if</span> i:</span><br><span class="line">		plaintext1 += <span class="built_in">chr</span>(<span class="built_in">int</span>(i,<span class="number">8</span>)) <span class="comment">#转8进制</span></span><br><span class="line"><span class="built_in">print</span>(plaintext1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#转16进制</span></span><br><span class="line">plaintext2 = <span class="string">&quot; &quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> plaintext1.split(<span class="string">&quot;\\&quot;</span>):</span><br><span class="line">	<span class="keyword">if</span> i:</span><br><span class="line">		plaintext2 += <span class="built_in">chr</span>(<span class="built_in">int</span>(i[<span class="number">1</span>:],<span class="number">16</span>))</span><br><span class="line"><span class="built_in">print</span>(plaintext2)</span><br><span class="line"></span><br><span class="line">f1.close()</span><br></pre></td></tr></table></figure>
+
+<p>得到了unicode编码。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602206624465.png" alt="1602206624465"></p>
+<p>解码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plaintext3 = plaintext2.encode(<span class="string">&#x27;utf8&#x27;</span>).decode(<span class="string">&#x27;unicode_escape&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(plaintext3)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602207025476.png" alt="1602207025476"></p>
+<p>fromCharCode()通过ascii码来获取字符串。</p>
+<p>直接在控制台运行。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602207515351.png" alt="1602207515351"></p>
+<p>一堆&amp;#x开头的编码，查查。</p>
+<blockquote>
+<p> HTML、XML 等 SGML 类语言的转义序列（escape sequence）</p>
+</blockquote>
+<p>html解码两次。</p>
+<p>得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602207802577.png" alt="1602207802577"></p>
+<h2 id=""><a href="#" class="headerlink" title=".!?"></a>.!?</h2><blockquote>
+<p>….. ….. ….. ….. !?!!. ?…. ….. ….. ….. .?.?! .?… .!…<br>….. ….. !.?.. ….. !?!!. ?!!!! !!?.? !.?!! !!!.. ….. ….. .!.?.<br>….. …!? !!.?. ….. ..?.? !.?.. ….. .!.?. ….. ….. !?!!. ?!!!!<br>!!!!! !?.?! .?!.? ….. ….! ?!!.? ….. …?. ?!.?. ….. !.?.. …..<br>!?!!. ?!!!! !!?.? !.?!! !!!!! !!!!. ….. …!. ?…. …!? !!.?. …..<br>?.?!. ?..!. ?…. ….. !?!!. ?!!!! !!!!? .?!.? !!!!! !!!!! !!!.? …..<br>..!?! !.?.. ….? .?!.? ….! .!!!. !!!!! !!!!! !!!!! !!.?. ….. .!?!!<br>.?… …?. ?!.?. ….. !.!!! !!!!! !.?.. ….. ..!?! !.?.. ….. .?.?!<br>.?… ….. !.?.</p>
+</blockquote>
+<p>.?!三个符号组成。</p>
+<p>拿去Ook解码（Ook只有三种不同的语法元素），得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602211679869.png" alt="1602211679869"></p>
+<p>网址：<a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
+<h2 id="-1"><a href="#-1" class="headerlink" title="+[]-"></a>+[]-</h2><blockquote>
+<p>+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+<br>+++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;++++[ -&gt;+++<br>+&lt;]&gt;+ +++.&lt; +++++ [-&gt;– —&lt;] &gt;.&lt;++ ++[-&gt;<br>++++&lt; ]&gt;+++ .&lt;+++[-&gt;– -&lt;]&gt;- —-. ++++. &lt;+++[<br>-&gt;+++ &lt;]&gt;+. &lt;++++ [-&gt;– –&lt;]&gt; —–<br>-.&lt;+++[-&gt;+ ++&lt;]&gt; ++.-. —– —.&lt; +++[- &gt;+++&lt;<br>]&gt;+++ .—- .&lt;+++ [-&gt;– -&lt;]&gt;-.&lt;+++ +++[- &gt;—-<br>–&lt;]&gt; —– —-. +.&lt;++ +++++ +[-&gt;+ +++++ ++&lt;]&gt;<br>++++++++++ .&lt;</p>
+</blockquote>
+<p>这是一种叫Brainfuck的语言，它使用**&gt; &lt; + - . , [ ]**八种符号来替换C语言的各种语法和命令。</p>
+<p>拿去在线解码，得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602211949075.png" alt="1602211949075"></p>
+<h2 id="奇怪的密码"><a href="#奇怪的密码" class="headerlink" title="奇怪的密码"></a>奇怪的密码</h2><blockquote>
+<p>突然天上一道雷电<br>gndk€rlqhmtkwwp}z</p>
+</blockquote>
+<p>乍一看是挺奇怪的，花括弧看起来像是flag{}的提交格式，但有没有flag几个字母，盲猜替换加密。</p>
+<p>试着对应一下ascii码。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>f</strong></th>
+<th align="center"><strong>l</strong></th>
+<th align="center"><strong>a</strong></th>
+<th align="center"><strong>g</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">102</td>
+<td align="center">108</td>
+<td align="center">97</td>
+<td align="center">103</td>
+</tr>
+<tr>
+<td align="center"><strong>g</strong></td>
+<td align="center"><strong>n</strong></td>
+<td align="center"><strong>d</strong></td>
+<td align="center"><strong>k</strong></td>
+</tr>
+<tr>
+<td align="center">103</td>
+<td align="center">110</td>
+<td align="center">100</td>
+<td align="center">107</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+<p>很神奇，发现是逐个增加1的形式移动。</p>
+<p>写个代码解码一下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">strs=<span class="string">&#x27;gndk€rlqhmtkwwp&#125;z&#x27;</span> <span class="comment">#要转换的字符串</span></span><br><span class="line">lista=[]</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">str</span> <span class="keyword">in</span> strs: <span class="comment">#ascii转10进制</span></span><br><span class="line">    <span class="built_in">str</span> = <span class="built_in">chr</span>(<span class="built_in">ord</span>(<span class="built_in">str</span>)-<span class="built_in">len</span>(lista)-<span class="number">1</span>) <span class="comment">#10进制位移后转为ascii码</span></span><br><span class="line">    lista.append(<span class="built_in">str</span>)</span><br><span class="line">word = <span class="string">&quot;&quot;</span>.join(lista) <span class="comment">#列表转为字符串</span></span><br><span class="line"><span class="built_in">print</span>(word)</span><br></pre></td></tr></table></figure>
+
+<p>得到的结果是<code>flag₧lei_ci_jiami</code></p>
+<p>把奇怪的符号去掉，加上花括号。</p>
+<p>flag{lei_ci_jiami}为正确flag。</p>
+<h2 id="托马斯-杰斐逊"><a href="#托马斯-杰斐逊" class="headerlink" title="托马斯.杰斐逊"></a>托马斯.杰斐逊</h2><blockquote>
+<p>1：  &lt;ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;<br>2：  &lt;KPBELNACZDTRXMJQOYHGVSFUWI &lt;<br>3：  &lt;BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;<br>4：  &lt;RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;<br>5：  &lt;IHFRLABEUOTSGJVDKCPMNZQWXY &lt;<br>6：  &lt;AMKGHIWPNYCJBFZDRUSLOQXVET &lt;<br>7：  &lt;GWTHSPYBXIZULVKMRAFDCEONJQ &lt;<br>8：  &lt;NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;<br>9：  &lt;QWATDSRFHENYVUBMCOIKZGJXPL &lt;<br>10： &lt;WABMCXPLTDSRJQZGOIKFHENYVU &lt;<br>11： &lt;XPLTDAOIKFZGHENYSRUBMCQWVJ &lt;<br>12： &lt;TDSWAYXPLVUBOIKZGJRFHENMCQ &lt;<br>13： &lt;BMCSRFHLTDENQWAOXPYVUIKZGJ &lt;<br>14： &lt;XPHKZGJTDSENYVUBMLAOIRFCQW &lt;</p>
+<p>密钥： 2,5,1,3,6,4,9,7,8,14,10,13,11,12</p>
+<p>密文：HCBTSXWCRQGLES</p>
+<p>flag格式 flag{你解密的内容}</p>
+</blockquote>
+<p>题目名看起来是个人名，去查了下发现居然是第三任美国总统。看来是我孤陋寡闻了（汗）。</p>
+<p>（正是他起草了《独立宣言》，查找了一下，发现《独立宣言》居然是一个名为<strong>比尔密码</strong>的密钥，还有一段相关的寻宝故事。）</p>
+<p>杰斐逊不仅是个政治家，还精通多个领域。他是个作家、发明家、建筑师……甚至密码学方面也有所研究，他发明了杰斐逊圆盘（杰弗逊轮转密码），是一种基于圆盘的多表替换加密。</p>
+<blockquote>
+<p>杰弗逊甚至对密码学也深有研究。他在1795年发明了一种加密装置叫做杰弗逊圆盘（Jeffersondisk），或叫杰弗逊转轮加密器（Jefferson wheelcipher）。</p>
+<p>这个装置有36片同样大小的木制转轮，套在一根铁杆上。每片转轮的圆周边缘上刻有乱序的<strong>26个英文字母</strong>。</p>
+<p>其使用方法是：进行秘密通信的双方必须各自拥有完全一样转轮加密器。当一方要把一段文字（不超过36字）秘密通知身处异地的对方时，只需转动加密器上的各片转轮，使这段文字正好出现在同一行上，这时转轮上排列的其他25行都是无意义的乱码；再把其中任意一行的乱码抄下来交给信使。信使并不知道这段乱码文字的意义，只负责把它送交对方。对方收到乱码信后，只需拿出自己保存的同样的装置，转动上面各片转轮，让其中一行的排列和这段乱码同处在一行上，然后再查看其他25行上的内容，其中必然有一行显示出加密者要传达的信息，而其他行显示的都是乱码。</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://book.51cto.com/art/201211/364575.htm">https://book.51cto.com/art/201211/364575.htm</a></p>
+</blockquote>
+<p>提示里每一行正好是26个乱序字母。</p>
+<p>按照密钥的提示，排出正确的顺序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">2：  &lt;KPBELNACZDTRXMJQOYHGVSFUWI &lt;</span><br><span class="line">5：  &lt;IHFRLABEUOTSGJVDKCPMNZQWXY &lt;</span><br><span class="line">1：  &lt;ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;</span><br><span class="line">3：  &lt;BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;</span><br><span class="line">6：  &lt;AMKGHIWPNYCJBFZDRUSLOQXVET &lt;</span><br><span class="line">4：  &lt;RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;</span><br><span class="line">9：  &lt;QWATDSRFHENYVUBMCOIKZGJXPL &lt;</span><br><span class="line">7：  &lt;GWTHSPYBXIZULVKMRAFDCEONJQ &lt;</span><br><span class="line">8：  &lt;NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;</span><br><span class="line">14： &lt;XPHKZGJTDSENYVUBMLAOIRFCQW &lt;</span><br><span class="line">10： &lt;WABMCXPLTDSRJQZGOIKFHENYVU &lt;</span><br><span class="line">13： &lt;BMCSRFHLTDENQWAOXPYVUIKZGJ &lt;</span><br><span class="line">11： &lt;XPLTDAOIKFZGHENYSRUBMCQWVJ &lt;</span><br><span class="line">12： &lt;TDSWAYXPLVUBOIKZGJRFHENMCQ &lt;</span><br></pre></td></tr></table></figure>
+
+<p>在根据密文对每一行切割后排序，例如H代表第一行从H切割，H前面的字符串后移，得到HGVSFUWIKPBELNACZDTRXMJQOY。</p>
+<p>依此类推。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HGVSFUWIKPBELNACZDTRXMJQOY</span><br><span class="line">CPMNZQWXYIHFRLABEUOTSGJVDK</span><br><span class="line">BVIQHKYPNTCRMOSFEZWAXJGDLU</span><br><span class="line">TEQGYXPLOCKBDMAIZVRNSJUWFH</span><br><span class="line">SLOQXVETAMKGHIWPNYCJBFZDRU</span><br><span class="line">XQYIZMJWAORPLNDVHGFCUKTEBS</span><br><span class="line">WATDSRFHENYVUBMCOIKZGJXPLQ</span><br><span class="line">CEONJQGWTHSPYBXIZULVKMRAFD</span><br><span class="line">RJLXKISEFAPMYGHBQNOZUTWDCV</span><br><span class="line">QWXPHKZGJTDSENYVUBMLAOIRFC</span><br><span class="line">GOIKFHENYVUWABMCXPLTDSRJQZ</span><br><span class="line">LTDENQWAOXPYVUIKZGJBMCSRFH</span><br><span class="line">ENYSRUBMCQWVJXPLTDAOIKFZGH</span><br><span class="line">SWAYXPLVUBOIKZGJRFHENMCQTD</span><br></pre></td></tr></table></figure>
+
+<p>这样看着有点麻烦，用代码把行转列。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602620229263.png" alt="1602620229263"></p>
+<p>发现了比较奇特，包含BUGKU的一行。</p>
+<p>使用规定的flag格式提交，成功！</p>
+<h2 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h2><p>题目是一个flag文件。</p>
+<p>解压的时候发现需要密码。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602892733257.png" alt="1602892733257"></p>
+<p>用winhex打开文件，发现<strong>全局方式位标记</strong>显示的是09 00（表示为加密，00 00表示为未加密）</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602893585593.png" alt="1602893585593"></p>
+<p>既然题目写了是伪加密，就改成00。</p>
+<p>解压文件成功，获得flag！</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602893651351.png" alt="1602893651351"></p>
+<h2 id="告诉你个秘密-ISCCCTF"><a href="#告诉你个秘密-ISCCCTF" class="headerlink" title="告诉你个秘密(ISCCCTF)"></a>告诉你个秘密(ISCCCTF)</h2><blockquote>
+<p>636A56355279427363446C4A49454A7154534230526D6843<br>56445A31614342354E326C4B4946467A5769426961453067</p>
+</blockquote>
+<p>有数字有字母，字母不超过F，一看就是十六进制。</p>
+<p>拿去解密得到</p>
+<p><code>cjV5RyBscDlJIEJqTSB0RmhCVDZ1aCB5N2lKIFFzWiBiaE0g</code></p>
+<p>一看是base64，再丢去解码，得到一串奇奇怪怪的东西。</p>
+<p><code>r5yG lp9I BjM tFhB T6uh y7iJ QsZ bhM </code></p>
+<p>后来发现它对应的是键盘（几个字母中间都包围着一个字母），照着键盘看就能得到结果。</p>
+<p>分别对应T O N G Y U A N</p>
+<p>提交后发现flag就是TONGYUAN。</p>
+<h2 id="这不是md5"><a href="#这不是md5" class="headerlink" title="这不是md5"></a>这不是md5</h2><blockquote>
+<p>666c61677b616537333538376261353662616566357d</p>
+</blockquote>
+<p>这是一串十六进制，丢去转换为字符串。</p>
+<p>没想到直接就获得到了flag{ae73587ba56baef5}</p>
+<p>简单的有点儿惊人。</p>
+<h2 id="python-N1CTF"><a href="#python-N1CTF" class="headerlink" title="python(N1CTF)"></a>python(N1CTF)</h2><blockquote>
+<p>@iH&lt;,{bdR2H;i6*Tm,Wx2izpx2!</p>
+</blockquote>
+<p>名字叫贝斯家族，感觉会和base有关系。</p>
+<p>试了base64，base32都不对。</p>
+<p>最后发现是base91。</p>
+<p>解码后得到flag。</p>
+<p>在线解码网址：<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/">http://ctf.ssleye.com/</a></p>
+<h2 id="富强民主"><a href="#富强民主" class="headerlink" title="富强民主"></a>富强民主</h2><blockquote>
+<p>公正公正公正诚信文明公正民主公正法治法治友善平等和谐敬业和谐富强和谐富强和谐文明和谐平等公正公正和谐法治公正公正公正文明和谐民主和谐敬业和谐平等和谐敬业和谐敬业和谐和谐和谐公正法治友善法治</p>
+</blockquote>
+<p>很显然，这是我们倒背如流的24字核心价值观。</p>
+<p>放到在线解码网站（<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/cvencode.html%EF%BC%89">http://ctf.ssleye.com/cvencode.html）</a></p>
+<p>就可以得到flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/bugku_web/1602620527652.png" alt="1602620527652"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.soyawww.com/2020/10/18/bugku%E4%B9%8B%E5%AF%86%E7%A0%81%E9%A2%98(%E4%B8%8A)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bugku/" rel="tag">bugku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E9%A2%98/" rel="tag">密码题</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/10/25/%E5%9F%B9%E8%AE%AD%E7%9A%84day1/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            培训的那些日子day1
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/22/html%E4%B8%8Ecss/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">html与css基础</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "4C1UYtlJuMPjaLshBufGIn2e-gzGzoHsz",
+    app_key: "NbpumEIJ4G7cOOl9aQOS4YsR",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

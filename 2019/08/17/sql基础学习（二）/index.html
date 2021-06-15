@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    sql基础学习（二） |  soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-sql基础学习（二）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  sql基础学习（二）
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/08/17/sql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time datetime="2019-08-17T11:33:00.000Z" itemprop="datePublished">2019-08-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">信安之路</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>紧接着上一次的任务，继续学习mysql。<br>这次依然使用的是centos7.6系统。</p>
+<h1 id="mysql读写文件"><a href="#mysql读写文件" class="headerlink" title="mysql读写文件"></a>mysql读写文件</h1><h2 id="一、读取文件"><a href="#一、读取文件" class="headerlink" title="一、读取文件"></a>一、读取文件</h2><p>mysql在不同版本读取文件的方法大致有3类：</p>
+<p>1.load_file()</p>
+<p>2.load data infile()</p>
+<p>3.system cat</p>
+<h3 id="1-load-file"><a href="#1-load-file" class="headerlink" title="1.load_file()"></a>1.load_file()</h3><span id="more"></span>
+<h3 id="（1）条件"><a href="#（1）条件" class="headerlink" title="（1）条件"></a>（1）条件</h3><p>1.当前权限对该文件可读</p>
+<p>2.文件在该服务器上</p>
+<p>3.路径完整</p>
+<p>4.文件大小小于max_allowed_packet</p>
+<p>5.当前数据库用户有FILE权限</p>
+<p>6.secure_file_priv的值为空，如果值为某目录，那么就只能对该目录的文件进行操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#查看权限</span><br><span class="line">MariaDB [mysql]&gt; select user();</span><br><span class="line">MariaDB [mysql]&gt; select user,file_priv from mysql.user;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/cZlxLqN7OuwXfso.jpg" alt="1.jpg"></p>
+<p>显示的Y说明有权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看允许读写的目录</span><br><span class="line">MariaDB [mysql]&gt; show global variables like &quot;%secure%&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/xShEGZqCVdjX168.jpg" alt="2.jpg"></p>
+<p>由于我这里<strong>secure_file_priv</strong>值为空，就不会限制目录。</p>
+<p>如果有值，就需要修改**/etc/my.conf<strong>文件，在[mysqld]下添加</strong>secure_file_priv=’’**。</p>
+<p><img src="https://i.loli.net/2019/08/17/GLoVPRjQNkh2Twv.jpg" alt="3.jpg"></p>
+<h3 id="（2）测试"><a href="#（2）测试" class="headerlink" title="（2）测试"></a>（2）测试</h3><p>先新建一个文件。</p>
+<p><img src="https://i.loli.net/2019/08/17/FVDjvdi6bXWBaCg.jpg" alt="3.1.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#查看文件</span><br><span class="line">create database text5;</span><br><span class="line">use text5;</span><br><span class="line">create table user(data text);</span><br><span class="line">insert into user(data) values (load_file(&#x27;/etc/soya&#x27;))</span><br><span class="line">select * from user;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/4KuioXrMxy8bhz7.jpg" alt="3.2.jpg"><img src="https://i.loli.net/2019/08/17/w5sCrzT4ab3qE1A.jpg" alt="3.3.jpg"></p>
+<h3 id="2-load-data-infile"><a href="#2-load-data-infile" class="headerlink" title="2.load data infile()"></a>2.load data infile()</h3><p>和load_file用法相似。sql注入时往往会过滤掉load_file()，但load data infile()仍可以使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [text5]&gt; load data infile &#x27;/etc/soya&#x27; into table user;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/K7NrPZFtv6QEICY.jpg" alt="3.4.jpg"></p>
+<h3 id="3-system-cat"><a href="#3-system-cat" class="headerlink" title="3.system cat"></a>3.system cat</h3><p>除了上面两种方法，也可以直接使用命令来查看。</p>
+<p><img src="https://i.loli.net/2019/08/17/JKqE6IwTnN2BCo8.jpg" alt="3.5.jpg"></p>
+<p>但这种方法<strong>不可以</strong>用于远程连接，只能用于本地读取。也无法越权读取。</p>
+<h2 id="二、写入文件"><a href="#二、写入文件" class="headerlink" title="二、写入文件"></a>二、写入文件</h2><h3 id="1-select…into-outfile"><a href="#1-select…into-outfile" class="headerlink" title="1.select…into outfile()"></a>1.select…into outfile()</h3><p>条件：</p>
+<p>1.目标目录要有可写权限 </p>
+<p>2.当前数据库用户要有FILE权限 </p>
+<p>3.目标文件不能已存在 </p>
+<p>4.secure_file_priv的值为空 </p>
+<p>5.路径完整</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#查看权限及可操作路径</span><br><span class="line">show global variables like &#x27;tmpdir&#x27;;</span><br><span class="line">show global variables like &#x27;%secure_file_priv%&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/LxiqOvn14CZ6573.jpg" alt="4.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#格式</span><br><span class="line">select &#x27;xxxxx&#x27; into outfile &#x27;/var/tmp/xxx&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/Ts62kibyGZ1rvxD.jpg" alt="5.jpg"></p>
+<h3 id="2-select…into-dumpfile"><a href="#2-select…into-dumpfile" class="headerlink" title="2.select…into dumpfile()"></a>2.select…into dumpfile()</h3><p>和into outfile的用法相似，但outfile会自动换行，dumpfile不会。</p>
+<p><img src="https://i.loli.net/2019/08/17/Gnfeq3yRW6pOEcP.jpg" alt="6.jpg"></p>
+<p>注：outfile函数可以导出多行，而dumpfile只能导出一行数据。<br>outfile函数在将数据写到文件里时有特殊的格式转换，而dumpfile则保持原数据格式</p>
+<h1 id="数据库系统表"><a href="#数据库系统表" class="headerlink" title="数据库系统表"></a>数据库系统表</h1><h2 id="一、默认库"><a href="#一、默认库" class="headerlink" title="一、默认库"></a>一、默认库</h2><p>根据版本不同，默认创建的库也不同，以下是一定会创建的三个库。</p>
+<table>
+<thead>
+<tr>
+<th>库名</th>
+<th>表数量</th>
+<th>视图数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>information_schema</td>
+<td>61</td>
+<td>0</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td>performance_schema</td>
+<td>87</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id="1-information-schema"><a href="#1-information-schema" class="headerlink" title="1.information_schema"></a>1.information_schema</h3><p>mysql自带的数据库，它提供了访问数据库元数据的方式。</p>
+<p><strong>元数据</strong>是关于数据的数据，如数据库名或表名，列的数据类型，或访问权限等。有些时候用于表述该信息的其他术语包括“数据词典”和“系统目录”。</p>
+<p>在MySQL中，把 information_schema看作是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权限等。</p>
+<p>在INFORMATION_SCHEMA中，有数个只读表。它们实际上是视图，而不是基本表。因此，你将无法看到与之相关的任何文件。</p>
+<p><strong>information_schema 数据库部分表说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">表名</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SCHEMATA</td>
+<td align="left">提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表</td>
+</tr>
+<tr>
+<td align="left">TABLES</td>
+<td align="left">提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema、表类型、表引擎、创建时间等信息。是show tables from schemaname的结果取之此表</td>
+</tr>
+<tr>
+<td align="left">COLUMNS</td>
+<td align="left">提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表</td>
+</tr>
+<tr>
+<td align="left">STATISTICS</td>
+<td align="left">提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表</td>
+</tr>
+<tr>
+<td align="left">USER_PRIVILEGES</td>
+<td align="left">用户权限表:给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表</td>
+</tr>
+<tr>
+<td align="left">SCHEMA_PRIVILEGES</td>
+<td align="left">方案权限表:给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表</td>
+</tr>
+<tr>
+<td align="left">TABLE_PRIVILEGES</td>
+<td align="left">表权限表:给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表</td>
+</tr>
+<tr>
+<td align="left">COLUMN_PRIVILEGES</td>
+<td align="left">列权限表:给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表</td>
+</tr>
+<tr>
+<td align="left">CHARACTER_SETS</td>
+<td align="left">字符集表:提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表</td>
+</tr>
+<tr>
+<td align="left">COLLATIONS</td>
+<td align="left">提供了关于各字符集的对照信息</td>
+</tr>
+<tr>
+<td align="left">COLLATION_CHARACTER_SET_APPLICABILITY</td>
+<td align="left">指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。</td>
+</tr>
+<tr>
+<td align="left">TABLE_CONSTRAINTS</td>
+<td align="left">描述了存在约束的表。以及表的约束类型</td>
+</tr>
+<tr>
+<td align="left">KEY_COLUMN_USAGE</td>
+<td align="left">描述了具有约束的键列</td>
+</tr>
+<tr>
+<td align="left">ROUTINES</td>
+<td align="left">提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列</td>
+</tr>
+<tr>
+<td align="left">VIEWS</td>
+<td align="left">给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息</td>
+</tr>
+<tr>
+<td align="left">TRIGGERS</td>
+<td align="left">提供了关于触发程序的信息。必须有super权限才能查看该表</td>
+</tr>
+</tbody></table>
+<h3 id="2-performance-schema"><a href="#2-performance-schema" class="headerlink" title="2.performance_schema"></a>2.performance_schema</h3><p>主要用于收集数据库服务器性能参数</p>
+<p>提供进程等待的详细信息，包括锁、互斥变量、文件信息；</p>
+<p>保存历史的事件汇总信息，为提供MySQL服务器性能做出详细的判断；</p>
+<p>对于新增和删除监控事件点都非常容易，并可以随意改变mysql服务器的监控周期，例如（CYCLE、MICROSECOND</p>
+<p>PERFORMANCE_SCHEMA这个功能<strong>默认是关闭</strong>的。</p>
+<p>需要设置参数：performance_schema 才可以启动该功能，这个参数是静态参数，只能写在my.cnf 中，不能动态修改。</p>
+<p><strong>performance_schema数据库部分表说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">表名</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">setup_table</td>
+<td align="left">设置表，配置监控选项</td>
+</tr>
+<tr>
+<td align="left">current_events_table</td>
+<td align="left">记录当前那些thread 正在发生什么事情</td>
+</tr>
+<tr>
+<td align="left">history_table</td>
+<td align="left">发生的各种事件的历史记录表</td>
+</tr>
+<tr>
+<td align="left">summary_table</td>
+<td align="left">对各种事件的统计表</td>
+</tr>
+<tr>
+<td align="left">setup_consumers\setup_instruments</td>
+<td align="left">描述各种事件, 设置哪些事件能够被收集</td>
+</tr>
+<tr>
+<td align="left">setup_instruments</td>
+<td align="left">描述这个数据库下的表名以及是否开启监控</td>
+</tr>
+<tr>
+<td align="left">setup_timers</td>
+<td align="left">描述监控选项已经采样频率的时间间隔</td>
+</tr>
+<tr>
+<td align="left">threads</td>
+<td align="left">监控服务器所有连接</td>
+</tr>
+<tr>
+<td align="left">performance_timers</td>
+<td align="left">设置一些监控信息, 指定mysql服务可用的监控周期，CYCLE表示按每秒检测2603393034次, 目前 performance-schema 只支持’wait’时间的监控，代码树上 wait/ 下的函数都可以监控到</td>
+</tr>
+</tbody></table>
+<h3 id="3-mysql"><a href="#3-mysql" class="headerlink" title="3.mysql"></a>3.mysql</h3><p>在mysql数据库中，有mysql_install_db脚本初始化权限表，存储权限的表。用于保存MySQL的权限、参数、对象和状态信息。</p>
+<p><strong>mysql数据库部分表说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">表名</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">user</td>
+<td align="left">用户列、权限列、安全列、资源控制列</td>
+</tr>
+<tr>
+<td align="left">db</td>
+<td align="left">用户列、权限列</td>
+</tr>
+<tr>
+<td align="left">host</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">table_priv</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">columns_priv</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">proc_priv</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h2 id="二、利用sql语句获取信息"><a href="#二、利用sql语句获取信息" class="headerlink" title="二、利用sql语句获取信息"></a>二、利用sql语句获取信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查询语法</span><br><span class="line">select + 字段列表/* + from + 表名 + [where 条件];</span><br><span class="line">#完整查询语法</span><br><span class="line">select + [select 选项] + 字段列表[字段别名]/* + from + 数据源 + [where 条件] + [group by 子句] + [order by 子句] + [limit 子句];</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-查询库"><a href="#1-查询库" class="headerlink" title="1.查询库"></a>1.查询库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看所有库的信息</span><br><span class="line">select * from information_schema.schemata; </span><br><span class="line">#查询所有库名</span><br><span class="line">SELECT schema_name from information_schema.schemata;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/GRkPpOJV5jqcTzl.jpg" alt="7.jpg"></p>
+<h3 id="2-查询表"><a href="#2-查询表" class="headerlink" title="2.查询表"></a>2.查询表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#查看所有表的信息</span><br><span class="line">select * from INFORMATION_SCHEMA.TABLES;</span><br><span class="line">#查询所有表名</span><br><span class="line">select table_name from information_schema.tables;</span><br><span class="line">#查询某库下的所有表名</span><br><span class="line">select table_name from information_schema.tables where table_schema=&#x27;库名&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/G5MUb9odHI1DZmi.jpg" alt="8.jpg"></p>
+<h3 id="3-查询字段"><a href="#3-查询字段" class="headerlink" title="3.查询字段"></a>3.查询字段</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#获取某表下的字段</span><br><span class="line">select column_name from information_schema.columns where table_name=&#x27;表名&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-其他"><a href="#4-其他" class="headerlink" title="4.其他"></a>4.其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看当前用户</span><br><span class="line">select user();</span><br><span class="line">#查看数据库版本</span><br><span class="line">select version();   </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="拓展-查询破解用户hash"><a href="#拓展-查询破解用户hash" class="headerlink" title="拓展(查询破解用户hash)"></a>拓展(查询破解用户hash)</h1><p>尝试查询出用户的 hash，并使用 hashcat 来对获取的 hash 进行暴力破解 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询用户的hash</span><br><span class="line">selcet user,host,password from mysql.user;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/rJquIvsypTD1L5f.jpg" alt="9.jpg"></p>
+<p>使用<a target="_blank" rel="noopener" href="https://www.cmd5.com/">MD5解密网站解密</a>：</p>
+<p><img src="https://i.loli.net/2019/08/17/nMlSUA5DkeLFYsN.jpg" alt="10.jpg"></p>
+<p><strong>使用hashcat破解</strong>：</p>
+<p>使用centos总是安装失败，最后还是选择使用ubuntu。</p>
+<p>先使用HashIdentifier识别hash类型。</p>
+<p><img src="https://i.loli.net/2019/08/17/RuUbxdD6qMnlyFP.jpg" alt="12.jpg"></p>
+<p>我决定使用密码爆破，所以先写一个包含密码的txt文件。</p>
+<p><img src="https://i.loli.net/2019/08/17/BL2QXdZ6hscjaMt.jpg" alt="13.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#格式</span><br><span class="line">hashcat --force -a 0 -m 300 hash值 密码文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/08/17/t3NSWiCoRnDaM2z.jpg" alt="14.jpg"></p>
+<p><img src="https://i.loli.net/2019/08/17/tVWM6Hi8IrLcRbJ.jpg" alt="15.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一些hashcat相关（详细见--help）</span><br><span class="line">-a 指定要使用的破解模式（例：-a 0字典攻击）0|字典破解，1|组合破解，3|掩码攻击，6|字典+掩码，7|掩码+字典</span><br><span class="line">-m 破解的hash类型，默认为md5</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>sql读写：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/caiqiiqi/article/details/84673007">https://blog.csdn.net/caiqiiqi/article/details/84673007</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/c1e4r/articles/8618692.html">https://www.cnblogs.com/c1e4r/articles/8618692.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/slip_666/article/details/79050454">https://blog.csdn.net/slip_666/article/details/79050454</a></p>
+<p><a target="_blank" rel="noopener" href="https://rj45mp.github.io/2019/08/12/mysql%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%A1%A8/">https://rj45mp.github.io/2019/08/12/mysql%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%A1%A8/</a></p>
+<p>outfile和dumpfile区别：</p>
+<p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/139858.htm">https://www.jb51.net/article/139858.htm</a></p>
+<p>数据库系统表：</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1340819">https://cloud.tencent.com/developer/article/1340819</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39251267/article/details/80094271">https://blog.csdn.net/qq_39251267/article/details/80094271</a></p>
+<p>hashcat：</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4008">https://xz.aliyun.com/t/4008</a></p>
+<p>以及群内各位大佬的文档。</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.soyawww.com/2019/08/17/sql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/08/17/hexo%20next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E9%82%A3%E4%BA%9B%E4%BA%8B%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            hexo next主题美化那些事（一）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/08/14/sql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">sql基础学习（一）</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "4C1UYtlJuMPjaLshBufGIn2e-gzGzoHsz",
+    app_key: "NbpumEIJ4G7cOOl9aQOS4YsR",
+    path: window.location.pathname,
+    avatar: "mp",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>

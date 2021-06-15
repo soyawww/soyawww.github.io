@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="soya的小屋" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     soya的小屋
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">soya的小屋</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['你好，世界', '面朝大海，春暖花开', 'HELLO,WORD'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-hexo博客｜windows迁移到mac"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/06/16/hexo%E5%8D%9A%E5%AE%A2%EF%BD%9Cwindows%E8%BF%81%E7%A7%BB%E5%88%B0mac/"
+    >hexo博客｜win10迁移到Mac</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/06/16/hexo%E5%8D%9A%E5%AE%A2%EF%BD%9Cwindows%E8%BF%81%E7%A7%BB%E5%88%B0mac/" class="article-date">
+  <time datetime="2021-06-15T19:20:00.000Z" itemprop="datePublished">2021-06-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近换了新电脑，所以打算把博客也迁移一下。</p>
+<h1 id="Win10转移到mac"><a href="#Win10转移到mac" class="headerlink" title="Win10转移到mac"></a>Win10转移到mac</h1><h2 id="1-安装brew"><a href="#1-安装brew" class="headerlink" title="1.安装brew"></a>1.安装brew</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/image-20210615120303981.png" alt="image-20210615120303981"></p>
+<p>安装完后重启终端。</p> 
+      <a class="article-more-link" href="/2021/06/16/hexo%E5%8D%9A%E5%AE%A2%EF%BD%9Cwindows%E8%BF%81%E7%A7%BB%E5%88%B0mac/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/" rel="tag">mac</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-kali搭建docker"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/06/15/kali%E6%90%AD%E5%BB%BAdocker/"
+    >kali搭建docker</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/06/15/kali%E6%90%AD%E5%BB%BAdocker/" class="article-date">
+  <time datetime="2021-06-15T08:00:00.000Z" itemprop="datePublished">2021-06-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BF%A1%E5%AE%89%E4%B9%8B%E8%B7%AF/">信安之路</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="kali搭建docker"><a href="#kali搭建docker" class="headerlink" title="kali搭建docker"></a>kali搭建docker</h1><p>1.安装https协议,ca证书,dirmngr</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y apt-transport-https ca-certificates</span><br><span class="line">sudo apt-get install dirmngr</span><br></pre></td></tr></table></figure>
+
+<p>2.添加gpg密钥，添加更新源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg | sudo apt-key add -</span><br><span class="line">echo &#x27;deb https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian/ buster stable&#x27; | sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2021/06/15/kali%E6%90%AD%E5%BB%BAdocker/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-自学幕布文档堆"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/05/16/%E8%87%AA%E5%AD%A6%E5%B9%95%E5%B8%83%E6%96%87%E6%A1%A3%E5%A0%86/"
+    >自学幕布文档堆</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/05/16/%E8%87%AA%E5%AD%A6%E5%B9%95%E5%B8%83%E6%96%87%E6%A1%A3%E5%A0%86/" class="article-date">
+  <time datetime="2021-05-16T08:00:00.000Z" itemprop="datePublished">2021-05-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%95/">自学记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>华为1+x：<a target="_blank" rel="noopener" href="https://share.mubu.com/doc/uHPpexyMQT">https://share.mubu.com/doc/uHPpexyMQT</a></p>
+<p>c+数据结构：<a target="_blank" rel="noopener" href="https://share.mubu.com/doc/3MaTYnG_okT">https://share.mubu.com/doc/3MaTYnG_okT</a></p>
+<p>小问题及解决方案：<a target="_blank" rel="noopener" href="https://share.mubu.com/doc/4GSgCGfUvkT">https://share.mubu.com/doc/4GSgCGfUvkT</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%95%E5%B8%83/" rel="tag">幕布</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-c语言学习记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/02/c%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+    >c语言学习记录</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/02/c%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-02-02T12:00:00.000Z" itemprop="datePublished">2021-02-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%95/">自学记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>听朋友说翁凯老师的c语言讲的特别好，一听发现老师的声音特别吸引人。<br>好的，就决定听老师的课来进行c语言的入门了！</p>
+<h1 id="1-基础理论知识"><a href="#1-基础理论知识" class="headerlink" title="1.基础理论知识"></a>1.基础理论知识</h1><p><strong>程序</strong>是用特殊的程序语言写出来表达如何解决问题的。</p>
+<p>程序的执行方式：</p>
+<ul>
+<li>解释：将源代码逐条转换成目标代码同时逐条运行的过程。</li>
+<li>编译：将源代码一次性转换成目标代码的过程。</li>
+</ul> 
+      <a class="article-more-link" href="/2021/02/02/c%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训的day7"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/05/%E5%9F%B9%E8%AE%AD%E7%9A%84day7/"
+    >培训的那些日子day7</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/05/%E5%9F%B9%E8%AE%AD%E7%9A%84day7/" class="article-date">
+  <time datetime="2020-12-05T01:51:00.000Z" itemprop="datePublished">2020-12-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最后的冲刺练题！</p>
+<p>有些没地方补充的补在这里。</p>
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><h2 id="pingpingping"><a href="#pingpingping" class="headerlink" title="pingpingping"></a>pingpingping</h2><p>先看下当前目录的文件，发现有flag。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1607072824581.png" alt="1607072824581"></p> 
+      <a class="article-more-link" href="/2020/12/05/%E5%9F%B9%E8%AE%AD%E7%9A%84day7/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训day6"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/17/%E5%9F%B9%E8%AE%ADday6/"
+    >培训的那些日子day6</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/17/%E5%9F%B9%E8%AE%ADday6/" class="article-date">
+  <time datetime="2020-11-16T18:13:05.000Z" itemprop="datePublished">2020-11-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="上午"><a href="#上午" class="headerlink" title="上午"></a>上午</h1><h2 id="第一道题"><a href="#第一道题" class="headerlink" title="第一道题"></a>第一道题</h2><p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605438958023.png" alt="1605438958023"></p>
+<p>看到url上user1等于一个base64编码。</p>
+<p>解码后发现是ctfuser。</p>
+<p>bp抓包，修改user1的值为admin的base64编码，用户名为admin。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605439322833.png" alt="1605439322833"></p>
+<p>得到flag！</p> 
+      <a class="article-more-link" href="/2020/11/17/%E5%9F%B9%E8%AE%ADday6/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训day5"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/15/%E5%9F%B9%E8%AE%ADday5/"
+    >培训的那些日子day5</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/15/%E5%9F%B9%E8%AE%ADday5/" class="article-date">
+  <time datetime="2020-11-15T04:00:00.000Z" itemprop="datePublished">2020-11-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="cisp-pte真题"><a href="#cisp-pte真题" class="headerlink" title="cisp-pte真题"></a>cisp-pte真题</h1><h2 id="1-SQL注入"><a href="#1-SQL注入" class="headerlink" title="1.SQL注入"></a>1.SQL注入</h2><blockquote>
+<p>​    所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。</p>
+<p>​    通过SQL注入漏洞读取/tmp/360/key文件,答案就在文件中。</p>
+<p>​    开始答题！</p>
+</blockquote>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605444964053.png" alt="1605444964053"></p>
+<p>尝试闭合，无回显，应该是过滤了#</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605445203138.png" alt="1605445203138"></p>
+<p>使用url编码绕过，成功！</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1605445176516.png" alt="1605445176516"></p> 
+      <a class="article-more-link" href="/2020/11/15/%E5%9F%B9%E8%AE%ADday5/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训day4"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/03/%E5%9F%B9%E8%AE%ADday4/"
+    >培训的那些日子day4</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/03/%E5%9F%B9%E8%AE%ADday4/" class="article-date">
+  <time datetime="2020-11-03T00:00:00.000Z" itemprop="datePublished">2020-11-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>实际上应该是day5。</p>
+<p>今天讲了xss和文件上传。</p>
+<h1 id="1-xss"><a href="#1-xss" class="headerlink" title="1.xss"></a>1.xss</h1><p>平台：<a target="_blank" rel="noopener" href="https://xss.haozi.me/#/0x00">https://xss.haozi.me/#/0x00</a></p>
+<h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>第一题很简单，直接构造alert语句。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1604900150954.png" alt="1604900150954"></p> 
+      <a class="article-more-link" href="/2020/11/03/%E5%9F%B9%E8%AE%ADday4/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训day3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/30/%E5%9F%B9%E8%AE%ADday3/"
+    >培训的那些日子day3</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/30/%E5%9F%B9%E8%AE%ADday3/" class="article-date">
+  <time datetime="2020-10-29T18:13:05.000Z" itemprop="datePublished">2020-10-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>pte的正式课程开始！</p>
+<p>实际上是day4的day3！</p>
+<p>今日学的是sql注入！（总感觉有些重复了趴……）</p>
+<h1 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h1><p>这是一个比较出名的sql靶场（虽说如此我也就走过第一关-_-||）</p>
+<p>这次不全做，挑一部分。</p>
+<h2 id="less-1"><a href="#less-1" class="headerlink" title="less-1"></a>less-1</h2><p>第一关，先重复遍流程。</p>
+<p><strong>1.判断是否存在注入点和注入类型</strong></p>
+<p><strong>2.判断字段长度</strong></p>
+<p><strong>3.判断字段的回显位置</strong></p>
+<p><strong>4.查找数据库名</strong></p>
+<p><strong>5.查找数据表名</strong></p>
+<p><strong>6.查找列名</strong></p>
+<p><strong>7.查看数据</strong></p>
+<p>好，一步步开始注入。</p> 
+      <a class="article-more-link" href="/2020/10/30/%E5%9F%B9%E8%AE%ADday3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-培训的day2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/26/%E5%9F%B9%E8%AE%AD%E7%9A%84day2/"
+    >培训的那些日子day2</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/26/%E5%9F%B9%E8%AE%AD%E7%9A%84day2/" class="article-date">
+  <time datetime="2020-10-26T01:51:00.000Z" itemprop="datePublished">2020-10-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%B9%E8%AE%AD%E8%AE%B0%E5%BD%95/">培训记录</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>第二天。</p>
+<h1 id="doraBOX"><a href="#doraBOX" class="headerlink" title="doraBOX"></a>doraBOX</h1><h2 id="sql字符型"><a href="#sql字符型" class="headerlink" title="sql字符型"></a>sql字符型</h2><p>先判断字段数，到**0’ order by 4#**报错，所以只有3个字段。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603608841945.png" alt="1603608841945"></p>
+<p>接下来使用联合查询判断字段显示的位置。</p>
+<p><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/2020/%E6%9D%82/1603608911445.png" alt="1603608911445"></p> 
+      <a class="article-more-link" href="/2020/10/26/%E5%9F%B9%E8%AE%AD%E7%9A%84day2/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" rel="tag">思路记录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E6%9C%BA/" rel="tag">靶机</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2021
+        <i class="ri-heart-fill heart_icon"></i> soya
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://soya-1300102518.cos.ap-shenzhen-fsi.myqcloud.com/%E5%85%B6%E4%BB%96%E7%BE%8E%E5%8C%96/%E5%A4%B4%E5%83%8F.jpg" alt="soya的小屋"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=264731930&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/Funnytitle.js"></script>
+
+</body>
+
+</html>
